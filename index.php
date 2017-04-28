@@ -63,14 +63,17 @@ foreach ($countries_files as $countries_file => $title) {
 	if(is_file($countries_file)){
 		$file = fopen($countries_file,"r");
 		$cpt=0;
+		$ip_cpt=0;
 		while(! feof($file)) {
 			$c=fgetcsv($file);
 			if($c[0]!=""){
 				$cpt++;
+				$ip_cpt+=(int) $c[0];
 				echo "	<tr><td>".$cpt."</td><td>".$c[1]."</td><td>".$c[2]."</td><td>".$c[0]."</td></tr>\n";
 			}
 		}
 		fclose($file);
+		echo "	<tr><td colspan='3'>Total IP</td><td>".$ip_cpt."</td><tr>\n";
 	}else{
 		echo "	<tr><td colspan='4'>Error : can't open ".htmlentities($countries_file)."</td><tr>\n";
 	}
