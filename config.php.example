@@ -1,0 +1,12 @@
+<?php
+// $countries_files=array(<COUNTRIES_FILE_PATH> => <TITLE>, ...)
+$countries_files=array("countries.csv" => "My website");
+
+// $html_head="<HTML_TO_DISPLAY_IN_HEAD>";
+// $html_head='<link href="my_style.css" rel="stylesheet">';
+$html_head=null;
+
+// $html_head="<HTML_TO_DISPLAY_IN_BODY>";
+// $html_body="<h1>Hello world</h1>";
+$html_body=null;
+?>
