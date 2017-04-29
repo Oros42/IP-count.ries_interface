@@ -73,12 +73,14 @@ include "config.php";
 $num_table=0;
 $tables_data=array();
 foreach ($countries_files as $countries_file => $title) {
-	$num_table++;
 ?>
-	<div id="table_<?php echo $num_table; ?>" class="tables">
-		<table>
+
+		<table id="table_<?php echo $num_table; ?>" class="tables">
 		<tr>
 			<th colspan='4'><?php echo htmlentities($title); ?></th>
+		</tr>
+		<tr>
+			<td id="div_map_<?php echo $num_table; ?>" class="map_contener" colspan='4'></td>
 		</tr>
 		<tr>
 			<th>N°</th>
@@ -107,15 +109,18 @@ foreach ($countries_files as $countries_file => $title) {
 	}
 	?>
 		</table>
-		<div  id="div_map_<?php echo $num_table; ?>" class="map_contener"></div>
-	</div>
+		<!--<div  id="div_map_<?php echo $num_table; ?>" class="map_contener"></div>-->
+	
 <?php
+	$num_table++;
 }
 ?>
 </div>
+<noscript>Need Javascript for map</noscript>
 <script type="text/javascript">
-function zoom(map) {
-	map=document.getElementById(map).children[0];
+function zoom(evt) {
+	var map_id=evt.currentTarget.map_id;
+	map=document.getElementById(map_id).children[0];
 	if("position" in map.style && map.style.position == "fixed"){
 		// close zoom
 		map.setAttribute('style', '');
@@ -137,8 +142,8 @@ function loadsvg(){
 			var tables = document.getElementsByClassName("tables");
 			for (var i = 0, end = tables.length; i < end; i++) {
 				var svg2 = document.importNode(svg,true);
-				var trs=tables[i].children[0].getElementsByTagName('tr');
-				for (var t = 2, end2=trs.length-1; t < end2; t++) {
+				var trs=tables[i].getElementsByTagName('tr');
+				for (var t = 3, end2=trs.length-1; t < end2; t++) {
 					// add color to countries
 					var nb_ip=trs[t].children[3].textContent;
 					if(nb_ip<10){
@@ -157,9 +162,10 @@ function loadsvg(){
 						country.setAttribute('style','fill:'+c);
 					}
 				}
-				svg2.addEventListener('click', function(){zoom('div_map_'+i)}, false);
+				svg2.addEventListener('click', zoom, false);
+				svg2.map_id='div_map_'+i;
 				// add svg map
-				tables[i].children[1].appendChild(svg2);
+				trs[1].children[0].appendChild(svg2);
 			}
 
 		}
