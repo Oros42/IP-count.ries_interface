@@ -66,7 +66,7 @@ foreach ($countries_files as $countries_file => $title) {
 		$ip_cpt=0;
 		while(! feof($file)) {
 			$c=fgetcsv($file);
-			if($c[0]!=""){
+			if($c[0]!="" && count($c)==3){
 				$cpt++;
 				$ip_cpt+=(int) $c[0];
 				echo "	<tr><td>".$cpt."</td><td>".$c[1]."</td><td>".$c[2]."</td><td>".$c[0]."</td></tr>\n";
