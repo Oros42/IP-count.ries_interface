@@ -11,8 +11,8 @@ git clone https://github.com/Oros42/IP-count.ries_interface
 Or  
 ```bash
 cd <A_WEB_FOLDER>
-wget https://raw.githubusercontent.com/Oros42/IP-count.ries_interface/master/index.php
-wget https://raw.githubusercontent.com/Oros42/IP-count.ries_interface/master/worldLow.svg
+wget https://raw.githubusercontent.com/Oros42/IP-count.ries_interface/master/index.php -O index.php
+wget https://raw.githubusercontent.com/Oros42/IP-count.ries_interface/master/worldLow.svg -O worldLow.svg
 wget https://raw.githubusercontent.com/Oros42/IP-count.ries_interface/master/config.php.example -O config.php
 ```
 Edit config.php.  
