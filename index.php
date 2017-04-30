@@ -58,7 +58,17 @@ include "config.php";
 			margin-left: 0px;
 			cursor:pointer;
 		}
+		a{
+			color: #a90000;
+		}
 	</style>
+	<noscript>
+		<style type="text/css">
+			.map_contener{
+				display: none;
+			}
+		</style>
+	</noscript>
 	<?php if(!empty($html_head)){
 		echo $html_head;
 	}
@@ -86,7 +96,7 @@ foreach ($countries_files as $countries_file => $title) {
 			<th>N°</th>
 			<th>Code</th>
 			<th>Country</th>
-			<th>Nb IP</th>
+			<th>Count IP</th>
 		</tr>
 <?php
 	if(is_file($countries_file)){
@@ -103,7 +113,7 @@ foreach ($countries_files as $countries_file => $title) {
 			}
 		}
 		fclose($file);
-		echo "		<tr><td colspan='3'>Total IP</td><td>".$ip_cpt."</td>\n";
+		echo "		<tr><td colspan='3'>Total unique IP</td><td>".$ip_cpt."</td>\n";
 	}else{
 		echo "		<tr><td colspan='4'>Error : can't open ".htmlentities($countries_file)."</td>\n";
 	}
@@ -116,7 +126,8 @@ foreach ($countries_files as $countries_file => $title) {
 }
 ?>
 </div>
-<noscript>Need Javascript for map</noscript>
+<noscript>Need Javascript to display map !</noscript>
+<br><a href="https://github.com/Oros42/IP-count.ries_interface">Code source</a>
 <script type="text/javascript">
 function zoom(evt) {
 	var map_id=evt.currentTarget.map_id;
@@ -147,15 +158,15 @@ function loadsvg(){
 					// add color to countries
 					var nb_ip=trs[t].children[3].textContent;
 					if(nb_ip<10){
-						c='#FF0000';
+						c='#ff8080';
 					}else if(nb_ip<100){
-						c='#DF0000';
+						c='#ea5c5c';
 					}else if(nb_ip<500){
-						c='#CF0000';
+						c='#db2525';
 					}else if(nb_ip<1000){
-						c='#AF0000';
+						c='#b51616';
 					}else{
-						c='#8F0000';
+						c='#7f0000';
 					}
 					var country = svg2.getElementById(trs[t].children[1].textContent);
 					if(country!=null){
